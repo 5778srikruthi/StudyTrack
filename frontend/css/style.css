@@ -1,0 +1,17 @@
+/* Basic page styling */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f8;
+    color: #222;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+p {
+    line-height: 1.6;
+}
