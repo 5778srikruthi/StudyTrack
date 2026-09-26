@@ -9,26 +9,92 @@
 
 <body>
 
-    <h1>Create a StudyTrack Account</h1>
+    <header class="navbar">
 
-    <form>
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name">
+        <div class="logo">
+            StudyTrack
+        </div>
 
-        <br><br>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+        </nav>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email">
+    </header>
 
-        <br><br>
+    <main class="auth-container">
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password">
+        <div class="auth-card">
 
-        <br><br>
+            <h1>Create Account</h1>
 
-        <button type="submit">Register</button>
-    </form>
+            <p>Join StudyTrack and start organizing your studies.</p>
+
+            <form id="registerForm">
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Confirm your password"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="auth-button">
+                    Register
+                </button>
+
+            </form>
+
+            <p class="auth-link">
+                Already have an account?
+                <a href="login.html">Login</a>
+            </p>
+
+        </div>
+
+    </main>
+     <script src="js/auth.js"></script>
 
 </body>
 </html>
