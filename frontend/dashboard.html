@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +11,21 @@
 
 <body>
 
-    <header>
-        <h1>StudyTrack Dashboard</h1>
-        <p>Welcome to your study dashboard.</p>
+    <header class="navbar">
+        <div class="logo">StudyTrack</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+        </nav>
     </header>
 
     <main>
+        <h1>StudyTrack Dashboard</h1>
+
+        <p id="welcomeMessage">
+            Welcome to your study dashboard.
+        </p>
 
         <section>
             <h2>My Tasks</h2>
@@ -27,12 +38,21 @@
         <section>
             <h2>Tasks</h2>
 
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Enter a study task"
+            >
+
+            <button id="addTaskButton">Add Task</button>
+
             <ul id="taskList">
                 <li>No tasks yet.</li>
             </ul>
         </section>
-
     </main>
+
+    <script src="js/dashboard.js"></script>
 
 </body>
 </html>

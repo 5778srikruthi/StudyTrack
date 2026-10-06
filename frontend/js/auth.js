@@ -1,6 +1,6 @@
 const registerForm = document.getElementById("registerForm");
 
-registerForm.addEventListener("submit", function(event) {
+registerForm.addEventListener("submit", async function(event) {
 
     event.preventDefault();
 
@@ -20,6 +20,23 @@ registerForm.addEventListener("submit", function(event) {
         password: password
     };
 
-    console.log(userData);
+    console.log("Sending data to backend:", userData);
 
+    const response = await fetch("http://localhost:8080/api/auth/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userData)
+    });
+
+   const data = await response.json();
+
+console.log("Backend response:", data);
+
+const message = document.getElementById("message");
+
+message.textContent = "Registration successful! You can now log in.";
+message.style.color = "green";
+message.style.marginTop = "15px";
 });
