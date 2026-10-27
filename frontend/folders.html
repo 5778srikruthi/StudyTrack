@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyTrack | My Folders</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="studytrack-app">
+
+    <aside class="sidebar">
+        <a href="dashboard.html" class="brand">
+            <span class="brand-icon">S</span>
+            <span>StudyTrack</span>
+        </a>
+
+        <p class="sidebar-label">WORKSPACE</p>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="sidebar-link">
+                <span>▦</span> Dashboard
+            </a>
+            <a href="calendar.html" class="sidebar-link">
+                <span>▦</span> Calendar
+            </a>
+            <a href="folders.html" class="sidebar-link active">
+                <span>▱</span> My Folders
+            </a>
+            <a href="dashboard.html#tasksSection" class="sidebar-link">
+                <span>☷</span> All Tasks
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <p class="sidebar-label">ACCOUNT</p>
+            <a href="index.html" class="sidebar-link">
+                <span>⌂</span> Home
+            </a>
+            <a href="#" id="logoutButton" class="sidebar-link">
+                <span>↪</span> Logout
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">ORGANIZE YOUR LEARNING</p>
+                <h1>My Folders <span class="wave">✦</span></h1>
+            </div>
+
+            <a href="dashboard.html" class="primary-button">
+                + Create Task
+            </a>
+        </header>
+
+        <section class="welcome-banner">
+            <div>
+                <p class="banner-kicker">ONE SUBJECT AT A TIME</p>
+                <h2>Your learning, organized.</h2>
+                <p>Keep your assignments and study tasks together by subject.</p>
+            </div>
+            <div class="banner-decoration" aria-hidden="true">✦</div>
+        </section>
+
+        <section class="content-panel folders-page-panel">
+            <div class="section-heading">
+                <div>
+                    <h2>Your study folders</h2>
+                    <p id="folderSummary">Loading your folders...</p>
+                </div>
+            </div>
+
+            <form id="createFolderForm" class="folder-form">
+                <input
+                    type="text"
+                    id="folderNameInput"
+                    placeholder="Create a folder, e.g. Java, DBMS"
+                    maxlength="60"
+                    required
+                    aria-label="New folder name"
+                >
+                <button
+                    type="submit"
+                    id="createFolderButton"
+                    class="primary-button"
+                >
+                    + Add folder
+                </button>
+            </form>
+
+            <div id="folderList" class="folder-grid folders-page-grid"></div>
+        </section>
+
+        <section class="content-panel folder-tasks-panel">
+            <div class="section-heading">
+                <div>
+                    <h2 id="folderTasksTitle">Select a folder</h2>
+                    <p>Tasks belonging to the selected folder.</p>
+                </div>
+
+                <button type="button" id="showAllFolderTasks" class="secondary-button">
+                    Show all tasks
+                </button>
+            </div>
+
+            <ul id="folderTaskList" class="task-list">
+                <li class="empty-task-message">
+                    Select a folder above to view its tasks.
+                </li>
+            </ul>
+        </section>
+
+        <footer class="app-footer">
+            Made for your little everyday progress <span>♥</span>
+        </footer>
+
+    </main>
+
+    <script src="js/folders.js"></script>
+</body>
+</html>

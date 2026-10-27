@@ -1,7 +1,10 @@
-package com.studytrack.backend.service;
 
-import com.studytrack.backend.model.User;
-import com.studytrack.backend.repository.UserRepository;
+package com.studytrack.service;
+
+import java.util.List;
+
+import com.studytrack.model.User;
+import com.studytrack.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,26 +21,25 @@ public class UserService {
     }
 
     public User registerUser(User user) {
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new IllegalArgumentException("Email is already registered");
+        }
 
-        String hashedPassword =
-                passwordEncoder.encode(user.getPassword());
-
+        String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
 
         return userRepository.save(user);
     }
 
-    public boolean loginUser(String email, String password) {
+    public User loginUser(String email, String password) {
+        List<User> users = userRepository.findAllByEmail(email);
 
-        User user = userRepository.findByEmail(email);
-
-        if (user == null) {
-            return false;
+        for (User user : users) {
+            if (passwordEncoder.matches(password, user.getPassword())) {
+                return user;
+            }
         }
 
-        return passwordEncoder.matches(
-                password,
-                user.getPassword()
-        );
+        return null;
     }
 }

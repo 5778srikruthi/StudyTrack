@@ -1,4 +1,4 @@
-package com.studytrack.backend.config;
+package com.studytrack.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

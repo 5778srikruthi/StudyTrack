@@ -1,4 +1,5 @@
-package com.studytrack.backend.model;
+
+package com.studytrack.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
@@ -19,12 +20,11 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    public Long getId() {
-        return id;
+    public User() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getId() {
+        return id;
     }
 
     public String getName() {

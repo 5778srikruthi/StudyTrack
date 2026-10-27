@@ -1,58 +1,358 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - StudyTrack</title>
+    <title>StudyTrack | Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body class="studytrack-app">
 
-    <header class="navbar">
-        <div class="logo">StudyTrack</div>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <a href="dashboard.html" class="brand">
+            <span class="brand-icon">S</span>
+            <span>StudyTrack</span>
+        </a>
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="login.html">Login</a>
+        <p class="sidebar-label">WORKSPACE</p>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="sidebar-link active">
+                <span>▦</span> Dashboard
+            </a>
+            <a href="calendar.html" class="sidebar-link">
+                <span>▦</span> Calendar
+            </a>
+            <a href="folders.html" class="sidebar-link">
+                <span>▱</span> My Folders
+            </a>
+            <a href="#tasksSection" class="sidebar-link">
+                <span>☷</span> All Tasks
+            </a>
         </nav>
-    </header>
 
-    <main>
-        <h1>StudyTrack Dashboard</h1>
+        <div class="sidebar-bottom">
+            <p class="sidebar-label">ACCOUNT</p>
+            <a href="index.html" class="sidebar-link">
+                <span>⌂</span> Home
+            </a>
+            <a href="#" id="logoutButton" class="sidebar-link">
+                <span>↪</span> Logout
+            </a>
+        </div>
+    </aside>
 
-        <p id="welcomeMessage">
-            Welcome to your study dashboard.
-        </p>
+    <!-- Main Content -->
+    <main class="main-content">
 
-        <section>
-            <h2>My Tasks</h2>
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">YOUR PERSONAL STUDY SPACE</p>
+                <h1>Dashboard <span class="wave">✦</span></h1>
+            </div>
 
-            <p>Total Tasks: <span id="totalTasks">0</span></p>
-            <p>Completed: <span id="completedTasks">0</span></p>
-            <p>Pending: <span id="pendingTasks">0</span></p>
+            <div class="topbar-actions">
+                <label class="search-box">
+                    <span>⌕</span>
+                    <input
+                        type="search"
+                        id="searchTaskInput"
+                        placeholder="Search your tasks..."
+                        aria-label="Search tasks"
+                    >
+                </label>
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    onclick="document.getElementById('taskInput').focus()"
+                >
+                    + Create Task
+                </button>
+            </div>
+        </header>
+
+        <!-- Welcome Banner -->
+        <section class="welcome-banner">
+            <div>
+                <p class="banner-kicker">A LITTLE PROGRESS EVERY DAY</p>
+                <h2>Make today count.</h2>
+                <p id="welcomeMessage">
+                    Welcome to your study dashboard.
+                </p>
+            </div>
+
+            <div class="banner-decoration" aria-hidden="true">✦</div>
         </section>
 
-        <section>
-            <h2>Tasks</h2>
+        <!-- Task Summary -->
+        <section class="overview-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Your overview</h2>
+                    <p>Keep track of your learning progress.</p>
+                </div>
+            </div>
 
-            <input
-                type="text"
-                id="taskInput"
-                placeholder="Enter a study task"
-            >
+            <div class="summary-cards">
 
-            <button id="addTaskButton">Add Task</button>
+                <article class="summary-card">
+                    <div class="summary-icon icon-purple">▤</div>
+                    <span>Total tasks</span>
+                    <strong id="totalTasks">0</strong>
+                    <small>All your study tasks</small>
+                </article>
 
-            <ul id="taskList">
+                <article class="summary-card">
+                    <div class="summary-icon icon-green">✓</div>
+                    <span>Completed</span>
+                    <strong id="completedTasks">0</strong>
+                    <small>Tasks you've finished</small>
+                </article>
+
+                <article class="summary-card">
+                    <div class="summary-icon icon-peach">◷</div>
+                    <span>Pending</span>
+                    <strong id="pendingTasks">0</strong>
+                    <small>Still on your list</small>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Folders and Date Search -->
+        <section class="content-grid">
+
+            <!-- Folder Section -->
+            <div class="content-panel folders-panel">
+                <div class="section-heading">
+                    <div>
+                        <h2>My folders</h2>
+                        <p>Keep every subject organized.</p>
+                    </div>
+
+                    <a href="folders.html" class="text-link">
+                        View all →
+                    </a>
+                </div>
+
+                <form id="createFolderForm" class="folder-form">
+                    <input
+                        type="text"
+                        id="folderNameInput"
+                        placeholder="New folder name, e.g. Java"
+                        aria-label="Folder name"
+                        maxlength="60"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        id="createFolderButton"
+                        class="primary-button"
+                    >
+                        + Add
+                    </button>
+                </form>
+
+                <div id="folderList" class="folder-grid">
+                    <!-- Folders are rendered by dashboard.js -->
+                </div>
+            </div>
+
+            <!-- Date Search -->
+            <div class="content-panel">
+                <div class="section-heading">
+                    <div>
+                        <h2>Find tasks by date</h2>
+                        <p>See what is due on a particular day.</p>
+                    </div>
+
+                    <span class="calendar-symbol">▦</span>
+                </div>
+
+                <form id="dateSearchForm" class="date-search-form">
+                    <label for="taskDateSearch">Choose a date</label>
+
+                    <input
+                        type="date"
+                        id="taskDateSearch"
+                        required
+                    >
+
+                    <button type="submit" class="primary-button">
+                        Show tasks
+                    </button>
+                </form>
+
+                <p class="helper-text">
+                    Choose a date to view tasks scheduled for that day.
+                </p>
+            </div>
+
+        </section>
+
+        <!-- Tasks -->
+         
+<!-- Deadline Reminders -->
+<section id="deadlineReminders" class="content-panel deadline-reminders">
+    <h2>🔔 Deadline Reminders</h2>
+    <p class="reminder-description">
+        Stay on track with your upcoming deadlines.
+    </p>
+
+    <div class="reminder-group reminder-today">
+        <h3>🟠 Due Today</h3>
+        <ul id="dueTodayList">
+            <li>Loading reminders...</li>
+        </ul>
+    </div>
+
+    <div class="reminder-group reminder-tomorrow">
+        <h3>🟣 Due Tomorrow</h3>
+        <ul id="dueTomorrowList">
+            <li>Loading reminders...</li>
+        </ul>
+    </div>
+</section>
+
+        <section class="content-panel tasks-panel" id="tasksSection">
+
+            
+<!-- Study Progress Analytics -->
+<section class="content-panel analytics-panel" id="analyticsSection">
+    <div class="section-heading">
+        <div>
+            <h2>Study Progress</h2>
+            <p>Your progress, one task at a time.</p>
+        </div>
+        <span class="analytics-icon">✦</span>
+    </div>
+
+    <div class="analytics-overview">
+        <div class="progress-circle" id="progressCircle"
+             role="img" aria-label="Study completion progress">
+            <div class="progress-circle-inner">
+                <strong id="completionPercentage">0%</strong>
+                <span>Completed</span>
+            </div>
+        </div>
+
+        <div class="progress-summary">
+            <div class="progress-stat">
+                <span class="stat-dot completed-dot"></span>
+                <span>Completed tasks</span>
+                <strong id="analyticsCompleted">0</strong>
+            </div>
+
+            <div class="progress-stat">
+                <span class="stat-dot pending-dot"></span>
+                <span>Pending tasks</span>
+                <strong id="analyticsPending">0</strong>
+            </div>
+
+            <div class="progress-stat">
+                <span class="stat-dot overdue-dot"></span>
+                <span>Overdue tasks</span>
+                <strong id="analyticsOverdue">0</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="weekly-progress">
+        <h3>This week's progress</h3>
+        <p>Tasks completed each day</p>
+        <p>Tasks due each day this week</p>
+
+        <div class="weekly-chart" id="weeklyChart">
+            <!-- Chart bars will be generated by JavaScript -->
+        </div>
+    </div>
+</section>
+
+
+            <div class="section-heading">
+                <div>
+                    <h2 id="taskSectionTitle">All tasks</h2>
+                    <p>Your tasks, priorities, and deadlines in one place.</p>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="task-filters">
+                <select id="taskStatusFilter" aria-label="Filter tasks by status">
+                    <option value="all">All statuses</option>
+                    <option value="pending">Pending</option>
+                    <option value="completed">Completed</option>
+                    <option value="overdue">Overdue</option>
+                    <option value="today">Due today</option>
+                    <option value="upcoming">Upcoming</option>
+                </select>
+
+                <select id="folderFilter" aria-label="Filter tasks by folder">
+                    <option value="all">All folders</option>
+                </select>
+            </div>
+
+            <!-- Add Task Form -->
+            <div class="task-form">
+                <input
+                    type="text"
+                    id="taskInput"
+                    placeholder="What do you need to study?"
+                    aria-label="New task title"
+                >
+
+                <div class="form-field">
+                    <label for="dueDateInput">Due date</label>
+                    <input type="date" id="dueDateInput">
+                </div>
+
+                <div class="form-field">
+                    <label for="priorityInput">Priority</label>
+                    <select id="priorityInput">
+                        <option value="High">High</option>
+                        <option value="Medium" selected>Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="folderInput">Folder</label>
+                    <select id="folderInput">
+                        <option value="Uncategorized">Uncategorized</option>
+                    </select>
+                </div>
+
+                <button
+                    id="addTaskButton"
+                    type="button"
+                    class="primary-button"
+                >
+                    + Add task
+                </button>
+            </div>
+
+            <!-- Existing JavaScript renders task cards here -->
+            <ul id="taskList" class="task-list">
                 <li>No tasks yet.</li>
             </ul>
+
         </section>
+
+        <footer class="app-footer">
+            Made for your little everyday progress <span>♥</span>
+        </footer>
+
     </main>
 
+    <!-- Existing task and folder functionality -->
     <script src="js/dashboard.js"></script>
+    <script src="js/dashboard-extra.js"></script>
 
 </body>
 </html>
