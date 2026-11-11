@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-    const API_URL = "http://localhost:8080/api/tasks";
+    const API_URL = "https://studytrack-production-fd8125e1.up.railway.app/api/tasks";
 
     const folderList = document.getElementById("folderList");
     const folderSummary = document.getElementById("folderSummary");
