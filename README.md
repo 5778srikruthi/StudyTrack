@@ -1,150 +1,132 @@
 # StudyTrack
 
-A full-stack student study and task management application designed to help students organize academic tasks, track deadlines, and manage their study schedules efficiently.
+A web-based student task and study-management application.
+
+## Overview
+
+StudyTrack helps students organise academic tasks and monitor completion progress. Users can register, log in, view a dashboard, and manage tasks. Task data is stored in MySQL through a Java Spring Boot backend, allowing completion status to persist after a page refresh.
 
 ## Features
 
 - User registration and login
-- Personalized student dashboard
-- Create, view, edit, and delete tasks
-- Task priority management (High, Medium, Low)
-- Due date and overdue task tracking
-- Calendar-based task management
-- Folder creation and organization
-- Task completion tracking
-- User-specific task management
-- Data persistence using MySQL
+- Dashboard with task list and progress counters
+- Persistent task storage using MySQL
+- Mark tasks as completed
+- Frontend pages for home, login, registration, dashboard, calendar, and folders
 
-## Tech Stack
+> Confirm the final behaviour of each page/module against the current source code before presenting it as a completed feature.
 
-### Frontend
-- HTML
-- CSS
-- JavaScript
+## Technology Stack
 
-### Backend
-- Java 21
-- Spring Boot
-- Spring Data JPA
-- Maven
+| Layer | Technology |
+|---|---|
+| Frontend | HTML, CSS, JavaScript |
+| Backend | Java 21, Spring Boot, Maven |
+| Database | MySQL |
+| Version control | Git, GitHub |
+| Frontend hosting | Vercel |
+| Backend hosting | Railway |
 
-### Database
-- MySQL
+## Architecture
 
-### Development Tools
-- Visual Studio Code
-- Git and GitHub
-- Postman
-- MySQL Workbench
+The browser-based frontend sends HTTP requests to the Spring Boot backend. The backend processes application operations and reads or writes persistent data in MySQL.
 
-## Project Structure
+## Repository Structure
 
 ```text
 StudyTrack/
 ├── frontend/
-│   ├── css/
-│   ├── js/
-│   ├── index.html
-│   ├── dashboard.html
-│   ├── login.html
-│   └── register.html
-│
 ├── backend/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   └── resources/
-│   │   └── test/
-│   ├── pom.xml
-│   └── mvnw.cmd
-│
+├── database/
+├── docs/
 └── README.md
 ```
 
+The exact files and subfolders may vary with the current repository version.
+
 ## Prerequisites
 
-Make sure the following are installed:
-
-- Java JDK 21
+- Java 21
 - MySQL Server
-- Visual Studio Code
-- Git
 - A modern web browser
+- Visual Studio Code (recommended)
 
-## Installation and Setup
+## Local Setup
 
-### 1. Clone the repository
+1. Clone the repository:
 
-```bash
-git clone https://github.com/5778srikruthi/StudyTrack.git
-cd StudyTrack
-```
+   ```bash
+   git clone https://github.com/5778srikruthi/StudyTrack.git
+   ```
 
-### 2. Create the database
+2. Create a MySQL database, for example `studytrack`.
 
-Open MySQL Workbench and execute:
+3. Configure the backend database connection. Keep credentials in environment variables rather than committing them:
 
-```sql
-CREATE DATABASE studytrack;
-```
+   - `DB_USERNAME`
+   - `DB_PASSWORD`
 
-### 3. Configure database connection
+4. Open a terminal in the `backend` directory and run on Windows:
 
-Open:
+   ```powershell
+   .\mvnw.cmd spring-boot:run
+   ```
 
-`backend/src/main/resources/application.properties`
+5. Serve the `frontend` directory using VS Code Live Server or another local web server.
 
-Configure your MySQL credentials:
+6. For local development, ensure the frontend API base URL points to the local backend (`http://localhost:8080`). The deployed frontend uses the Railway backend URL.
 
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/studytrack
-spring.datasource.username=${DB_USERNAME}
-spring.datasource.password=${DB_PASSWORD}
+## Deployment
 
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.format_sql=true
-```
+- Frontend: https://studytrack-frontend-rrlp.vercel.app
+- Backend: https://studytrack-production-fd8125e1.up.railway.app
 
-Set the `DB_USERNAME` and `DB_PASSWORD` environment variables on your computer before starting the backend.
+The backend is hosted on Railway with a connected MySQL service. The frontend is hosted on Vercel.
 
-### 4. Run the backend
+## API
 
-Open a terminal inside the `backend` directory and execute:
+The registration route verified during testing is:
 
-```powershell
-.\mvnw.cmd spring-boot:run
-```
+- `POST /api/auth/register`
 
-The backend will run at:
+Other login and task routes are consumed by the frontend. Consult the backend controller classes for their exact paths, methods, request formats, and response formats before adding them to this section. Do not guess API routes.
 
-`http://localhost:8080`
+## Database
 
-### 5. Run the frontend
+The verified tables include `user` and `task`. Task records include an ID, title, completion status, and `user_id` association. Confirm the final entity classes and schema for the complete list of columns and constraints.
 
-Open the `frontend` folder using Visual Studio Code and launch `index.html` with Live Server.
+## Testing Status
 
-Access the application through the local Live Server URL.
+- Fresh clone completed a Maven clean build successfully.
+- The build reported no automated tests to run.
+- Registration was manually tested; the request returned HTTP 201 and the record was verified in the test database.
+- Login, dashboard access, and logout were manually checked.
+- Task completion remained saved after refreshing the dashboard.
+- The deployed frontend was opened and tested on a phone.
+- Basic task visibility was checked in the UI. This does not replace server-side authorization testing.
 
-## Testing
+## Security Notes
 
-The application has been manually tested for:
+- Never commit database passwords, tokens, or production secrets.
+- Do not include production database backups or real user data in source archives.
+- Restrict CORS to the actual frontend origin.
+- Verify that the backend authenticates every task request and checks task ownership on the server.
+- Use HTTPS for deployed traffic.
 
-- User registration and login
-- Invalid login and duplicate registration handling
-- Task creation, retrieval, updating, and deletion
-- User-specific task data isolation
-- Database persistence after backend restart
-- Frontend-backend integration
-- Calendar and folder functionality
-- Responsive layout on laptop and mobile screens
+## Future Improvements
 
-Backend API endpoints were tested using Postman.
+- Add backend unit and integration tests.
+- Complete API-level authorization tests.
+- Document all controller routes and request/response schemas.
+- Review input validation and error handling.
+- Confirm and document calendar and folders module behaviour.
+- Consider Progressive Web App support.
 
-## Repository
+## Project Links
 
-GitHub: https://github.com/5778srikruthi/StudyTrack
+- GitHub: https://github.com/5778srikruthi/StudyTrack
+- Frontend: https://studytrack-frontend-rrlp.vercel.app
+- Backend: https://studytrack-production-fd8125e1.up.railway.app
 
-## Project
-
-**StudyTrack — Student Study and Task Management System**
+---
+This README is based on the project details and manual test results currently available. Verify it against the latest source code before final academic submission.
